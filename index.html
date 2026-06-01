@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jokempô</title>
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3a8a, #9333ea);
+    }
+
+    .container{
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    h1{
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
+
+    .subtitle{
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .rules{
+      background: #f3f4f6;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .rules p{
+      margin: 10px 0;
+    }
+
+    .btn{
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #1e3a8a, #9333ea);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .btn:hover{
+      opacity: 0.9;
+    }
+
+    .resultado{
+      margin-top: 20px;
+      background: #f3f4f6;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main class="container">
+
+    <h1>Jokempô</h1>
+
+    <p class="subtitle">Pedra, Papel e Tesoura</p>
+
+    <section class="rules">
+      <p><strong>1</strong> - PEDRA 🪨</p>
+      <p><strong>2</strong> - PAPEL 📄</p>
+      <p><strong>3</strong> - TESOURA ✂️</p>
+    </section>
+
+    <button id="jogar" class="btn">Jogar</button>
+
+    <div id="resultado" class="resultado">
+      O resultado aparecerá aqui
+    </div>
+
+  </main>
+
+  <script>
+
+    document.getElementById("jogar").addEventListener("click", () => {
+
+      let resultado = document.getElementById("resultado")
+
+      let user = Number(prompt("Digite um numero: "))
+
+      let numero = Math.floor(Math.random() * 3) + 1
+
+      let escolhaMaquina = ""
+
+      if(numero === 1){
+        escolhaMaquina = "PEDRA 🪨"
+      }else if(numero === 2){
+        escolhaMaquina = "PAPEL 📄"
+      }else{
+        escolhaMaquina = "TESOURA ✂️"
+      }
+
+      if(
+        (user === 1 && numero === 2) ||
+        (user === 2 && numero === 3) ||
+        (user === 3 && numero === 1)
+      ){
+
+        resultado.innerHTML = `Você perdeu! A máquina escolheu ${escolhaMaquina}`
+
+      }else if(
+        (user === 1 && numero === 3) ||
+        (user === 2 && numero === 1) ||
+        (user === 3 && numero === 2)
+      ){
+
+        resultado.innerHTML = `Você ganhou! A máquina escolheu ${escolhaMaquina}`
+
+      }
+      
+      while(user === numero){
+
+        resultado.innerHTML = "DEU EMPATE! Escolha novamente"
+
+        user = Number(prompt("Digite outro numero: "))
+
+        numero = Math.floor(Math.random() * 3) + 1
+
+        if(numero === 1){
+          escolhaMaquina = "PEDRA 🪨"
+        }else if(numero === 2){
+          escolhaMaquina = "PAPEL 📄"
+        }else{
+          escolhaMaquina = "TESOURA ✂️"
+        }
+
+        if(
+          (user === 1 && numero === 2) ||
+          (user === 2 && numero === 3) ||
+          (user === 3 && numero === 1)
+        ){
+
+          resultado.innerHTML = `Você perdeu! A máquina escolheu ${escolhaMaquina}`
+
+        }else if(
+          (user === 1 && numero === 3) ||
+          (user === 2 && numero === 1) ||
+          (user === 3 && numero === 2)
+        ){
+
+          resultado.innerHTML = `Você ganhou! A máquina escolheu ${escolhaMaquina}`
+
+        }
+
+      }
+
+    })
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urna Eletrônica</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.urna{
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    text-align: center;
+    width: 350px;
+}
+
+button{
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.candidato1{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.candidato2{
+    background-color: #2196F3;
+    color: white;
+}
+
+.encerrar{
+    background-color: red;
+    color: white;
+}
+
+#resultado{
+    margin-top: 20px;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="urna">
+    <h1>Urna Eletrônica</h1>
+
+    <p><strong>1</strong> - João</p>
+    <button class="candidato1" onclick="votar(1)">Votar em João</button>
+
+    <p><strong>2</strong> - Maria</p>
+    <button class="candidato2" onclick="votar(2)">Votar em Maria</button>
+
+    <button class="encerrar" onclick="encerrar()">Encerrar Votação</button>
+
+    <div id="resultado"></div>
+</div>
+
+<script>
+
+let votosJoao = 0;
+let votosMaria = 0;
+
+function votar(numero){
+
+    if(numero === 1){
+        votosJoao++;
+        document.getElementById("resultado").innerHTML =
+        "Voto registrado para João!";
+    }
+
+    if(numero === 2){
+        votosMaria++;
+        document.getElementById("resultado").innerHTML =
+        "Voto registrado para Maria!";
+    }
+}
+
+function encerrar(){
+
+    let resultado = document.getElementById("resultado");
+
+    if(votosJoao > votosMaria){
+
+        resultado.innerHTML =
+        `João venceu!<br>
+        João: ${votosJoao} votos<br>
+        Maria: ${votosMaria} votos`;
+
+    }else if(votosMaria > votosJoao){
+
+        resultado.innerHTML =
+        `Maria venceu!<br>
+        João: ${votosJoao} votos<br>
+        Maria: ${votosMaria} votos`;
+
+    }else{
+
+        resultado.innerHTML =
+        `Empate!<br>
+        João: ${votosJoao} votos<br>
+        Maria: ${votosMaria} votos`;
+    }
+}
+
+</script>
+
+</body>
+</html>
